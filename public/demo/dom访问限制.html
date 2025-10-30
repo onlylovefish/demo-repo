@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>跨域问题——dom访问限制</title>
+  </head>
+  <body>
+    <h2>我是页面1</h2>
+    <button id="btn" onclick="showDOM()">点击我，访问页面2的DOM</button>
+    <button id="btn2" onclick="showDOM2()">点击我，访问同域页面的DOM</button>
+    <br />
+    <iframe id="framePage2" src="http://localhost:5173/demo.html" width="600" height="400"></iframe>
+
+    <iframe id="framePage" src="https://www.baidu.com" width="600" height="400"></iframe>
+  </body>
+  <script>
+    function showDOM() {
+      const framePage = document.getElementById('framePage')
+      console.log(framePage.contentWindow.document.body)
+    }
+    function showDOM2() {
+      const framePage2 = document.getElementById('framePage2')
+      console.log(framePage2.contentWindow.document.body)
+      console.log(framePage2.contentWindow.document.body.cookie) // 打印的是当前页面的cookie，不是百度的
+    }
+  </script>
+</html>

@@ -26,7 +26,13 @@
     </div>
   </div>
 </template>
-
+<script>
+// 记录首个可见内容出现的时间
+const firstContentTime = performance.now() + startTime
+// 计算白屏时间（毫秒）
+const whiteScreenTime = firstContentTime - startTime
+console.log('白屏时间：', whiteScreenTime, 'ms')
+</script>
 <style>
 .sao-guang {
   display: flex;
